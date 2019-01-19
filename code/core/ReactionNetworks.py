@@ -12,7 +12,7 @@ from __future__ import division
 
 from builtins import str
 from builtins import range
-from past.builtins import basestring
+# from builtins import basestring
 from builtins import object
 import os, re, numpy, random
 import GAMSclasses, core, DB, enhancedLists, labeling, sbmlio
@@ -48,7 +48,7 @@ class ReactionNetwork(object):
         sbmlFileName = None
         sbmlFileContents = None
 
-        if isinstance(source, basestring):
+        if isinstance(source, str):
             # If the string has XML brackets, it's likely not a filename.
             # (We don't accept filenames that are complex shell commands, e.g. with STDOUT routings.)
             if '<' in source and '>' in source:
@@ -61,14 +61,14 @@ class ReactionNetwork(object):
 
         # If we were given a file name, but were not given file content (or were given empty content),
         # we attempt to read in a file and assign it to the content.
-        if isinstance(sbmlFileName, basestring) and ((sbmlFileContents is None) or (sbmlFileContents.strip() == '')):
+        if isinstance(sbmlFileName, str) and ((sbmlFileContents is None) or (sbmlFileContents.strip() == '')):
             with open(sbmlFileName, 'r') as file:
                 sbmlFileContents = file.read()
             file.closed
 
         # If any of the above attempts to fill in the file contents succeeded, we parse it as SBML.
         # If not, we do one more test to see if we were given a tuple suitable for unpacking directly into ReactionNetwork parts.
-        if isinstance(sbmlFileContents, basestring):
+        if isinstance(sbmlFileContents, str):
             if sbmlFileContents.strip() != '':
                 sbmlImporter = sbmlio.SBMLImporter(sbmlFileContents)
 

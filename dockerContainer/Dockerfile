@@ -1,4 +1,4 @@
-FROM debian:8 
+FROM debian:latest
 
 MAINTAINER Tyler W. H. Backman "tbackman@lbl.gov"
 
@@ -14,18 +14,19 @@ RUN apt-get update \
 		wget \
 		vim \
 		man \
-		python-tk \
 		pkg-config \
  		ipython \
-		python-pip \ 
-		python-dev \
+		python3-pip \
+		python3-all-dev \
 		cython \
-		python-tk \
-		python-libxml2 \
-		python-lxml \
+		python3-tk \
+		python3-libxml2 \
+		python3-lxml \
 		tcsh \
 		git \
 	&& apt-get autoremove -y \
+    && ln -s /usr/bin/python3 /usr/local/bin/python \
+    && ln -s /usr/bin/pip3 /usr/local/bin/pip \
 	&& rm -rf /var/lib/apt/lists/*
 
 # install pip packages
@@ -39,7 +40,7 @@ ADD ./gamsbatch /root/
 ENV PATH="${PATH}:/opt/gams/gams24.5_linux_x64_64_sfx"
 
 # install jQMM
-RUN git clone https://github.com/JBEI/jqmm.git \
+RUN git clone -b extend https://github.com/somtirtharoy/jqmm.git \
     && mkdir -p /users/hgmartin/libraries/ \ 
     && mkdir -p /scratch/hgmartin_scratch/tests \ 
     && ln -s /root/jqmm /users/hgmartin/libraries/quantmodel
@@ -58,4 +59,4 @@ RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
 # run jupyter server
-CMD ["jupyter", "notebook", "--no-browser", "--ip=*", "--notebook-dir=/root/jqmm"]
+CMD ["jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0", "--notebook-dir=/root/jqmm"]

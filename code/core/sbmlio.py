@@ -7,7 +7,7 @@ The sbmlio module provides support for input/output of ReactionNetwork structure
 
 from builtins import str
 from builtins import range
-from past.builtins import basestring
+# from past.builtins import basestring
 from builtins import object
 import re
 import core, DB, enhancedLists, labeling
@@ -37,7 +37,7 @@ class SBMLImporter(object):
         self.errorCount = 0
         self.logStrings = []
 
-        if not isinstance(sbmlFileContents, basestring):
+        if not isinstance(sbmlFileContents, str):
             self.errorCount = 1
             self.logStrings = ['No SBML string provided (object is not a string).']
         elif sbmlFileContents.strip() == '':

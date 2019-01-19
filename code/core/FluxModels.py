@@ -1046,7 +1046,7 @@ class TwoSC13Model(C13Model):
 
 
 
-class ELVAModel(FluxModel,C13Model):
+class ELVAModel(C13Model):
     "Class for ELVA = External Labeling Variability Analysis calculations."
     # TODO(Hector): check the effect of fragments not to be fit
 
