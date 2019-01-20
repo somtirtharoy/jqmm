@@ -315,15 +315,15 @@ class ReactionNetwork(object):
                 reaction.measured = True
         elif isinstance(flux, tuple):
             lb,ub = flux
-            fluxNew = core.flux(((core.rangedNumber(lb,utils.old_div((lb+ub),2),ub)),(core.rangedNumber(0,0,0))))
+            fluxNew = core.flux(core.rangedNumber(lb,utils.old_div((lb+ub),2),ub),core.rangedNumber(0,0,0))
             self.changeFluxBounds(reactionName, fluxNew)      
         else:      # shortened version                 
             try:            
-                bounds = float(flux)                      
-                fluxNew = core.flux(((core.rangedNumber(bounds,bounds,bounds)),(core.rangedNumber(0,0,0))))
+                bounds = float(flux)
+                fluxNew = core.flux(core.rangedNumber(bounds,bounds,bounds),core.rangedNumber(0,0,0))
                 self.changeFluxBounds(reactionName, fluxNew)       
             except:
-                print('wrong input!!!')
+                print('Wrong input!!!')
 
 
     def loadFluxBounds(self, fileName, convert2SBML=True, measured=False):
