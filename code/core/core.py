@@ -1468,6 +1468,13 @@ class flux(object):
         """
         # TODO: Why aren't we converting all these into rangedNumbers internally,
         # upon instantiation?  getLineBest and getComp would become much simpler.
+        print("Inside flux init")
+        print("========================================")
+        print("for_back_tup", for_back_tup)
+        print("net_exc_tup", net_exc_tup)
+        print("net_coeff_tup", net_coeff_tup)
+        print("========================================")
+        print("\n")
         if for_back_tup != None and net_exc_tup != None:
             forward,backward = for_back_tup
             net,exchange     = net_exc_tup

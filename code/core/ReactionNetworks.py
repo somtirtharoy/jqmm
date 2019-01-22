@@ -302,26 +302,35 @@ class ReactionNetwork(object):
         
         changes lower bound to 0 and upper bound to 2, and:
         
-            reaction.changeFluxBounds('PDH'0)
+            reaction.changeFluxBounds('PDH', 0)
             
         changes both bounds to zero.
         Input can also be a flux class instance.
         """
+        print("Inside changeFluxBounds")
         if isinstance(flux, core.flux):        # full flux instantiation provided
+            print("This is a flux object")
             reacDict = self.reactionList.getReactionDictionary()
             reaction = reacDict[reactionName]
             reaction.fluxBounds = flux 
             if measured:
                 reaction.measured = True
         elif isinstance(flux, tuple):
+            print("This is a tuple")
             lb,ub = flux
             fluxNew = core.flux(core.rangedNumber(lb,utils.old_div((lb+ub),2),ub),core.rangedNumber(0,0,0))
             self.changeFluxBounds(reactionName, fluxNew)      
-        else:      # shortened version                 
-            try:            
+        else:      # shortened version
+            print("This is a number")
+            try:
+                print("flux", flux)
                 bounds = float(flux)
+                print("bounds", bounds)
+                print("Convert it to a flux object")
                 fluxNew = core.flux(core.rangedNumber(bounds,bounds,bounds),core.rangedNumber(0,0,0))
-                self.changeFluxBounds(reactionName, fluxNew)       
+                print("fluxNew", fluxNew)
+                self.changeFluxBounds(reactionName, fluxNew)
+                print("Changed flux bounds")
             except:
                 print('Wrong input!!!')
 

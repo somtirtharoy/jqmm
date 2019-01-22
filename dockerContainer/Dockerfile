@@ -43,6 +43,7 @@ ENV PATH="${PATH}:/opt/gams/gams24.5_linux_x64_64_sfx"
 RUN git clone -b extend https://github.com/somtirtharoy/jqmm.git \
     && mkdir -p /users/hgmartin/libraries/ \ 
     && mkdir -p /scratch/hgmartin_scratch/tests \ 
+    && mkdir -p /root/tests \
     && ln -s /root/jqmm /users/hgmartin/libraries/quantmodel
 
 # install svgfig
