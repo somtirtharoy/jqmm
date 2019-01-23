@@ -1476,12 +1476,14 @@ class flux(object):
         print("========================================")
         print("\n")
         if for_back_tup != None and net_exc_tup != None:
+            print("for_back_tup != None and net_exc_tup != None")
             forward,backward = for_back_tup
             net,exchange     = net_exc_tup
             forward  = float(forward)  if utils.is_float(forward)  else forward
             backward = float(backward) if utils.is_float(backward) else backward
             net      = float(net)      if utils.is_float(net)      else net
             exchange = float(exchange) if utils.is_float(exchange) else exchange
+            print("After processing")
             
             self.forward  = forward
             self.backward = backward
@@ -1489,19 +1491,25 @@ class flux(object):
             self.exchange = exchange
             
         elif for_back_tup != None:
+            print("for_back_tup != None")
             forward,backward = for_back_tup
+            print("After untupling")
             forward  = float(forward)  if utils.is_float(forward)  else forward
-            backward = float(backward) if utils.is_float(backward) else backward  
-            
+            print("After getting forward")
+            backward = float(backward) if utils.is_float(backward) else backward
+            print("After getting backward")
+
             self.forward  = forward
             self.backward = backward
             self.net      = forward - backward        
             self.exchange = min(forward,backward)
         
         elif net_exc_tup != None:
+            print("net_exc_tup != None")
             net,exchange  = net_exc_tup
             net      = float(net)      if utils.is_float(net)      else net
             exchange = float(exchange) if utils.is_float(exchange) else exchange
+            print("After processing")
 
             # get value of net for comparison           
             try:
@@ -1519,6 +1527,7 @@ class flux(object):
                 self.backward = exchange - net
 
         elif net_coeff_tup != None:
+            print("net_coeff_tup != None")
             net,coeff = net_coeff_tup
             net      = float(net)      if utils.is_float(net)   else net
             coeff    = float(coeff)    if utils.is_float(coeff) else coeff            
