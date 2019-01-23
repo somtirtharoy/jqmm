@@ -1506,7 +1506,7 @@ class flux(object):
             print("After getting min(forward,backward)")
 
 
-    elif net_exc_tup != None:
+        elif net_exc_tup != None:
             print("net_exc_tup != None")
             net,exchange  = net_exc_tup
             net      = float(net)      if utils.is_float(net)      else net
