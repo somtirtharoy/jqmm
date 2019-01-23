@@ -1293,16 +1293,16 @@ class rangedNumber(object):
         if not isinstance(other, rangedNumber):
             other = rangedNumber.from_number(other)
         final = self.best + other.best
-        return self.newWithErrorPropogation(other, final)
+        return self.newWithErrorPropagation(other, final)
 
 
     def __sub__(self, other):
         "ranged number subtraction. lo and hi determined through standard error propagation"
         final = self.best - other.best
-        return self.newWithErrorPropogation(other, final)
+        return self.newWithErrorPropagation(other, final)
 
 
-    def newWithErrorPropogation(self, other, final):
+    def newWithErrorPropagation(self, other, final):
         "Helper function for __add__ and __sub__"
         if utils.is_float(self.lo) and utils.is_float(other.lo):
             loDS = abs(self.lo - self.best)     
@@ -1389,7 +1389,8 @@ class rangedNumber(object):
         else:
             return getattr(self,comp)
 
-
+    def min(self, other):
+        return self if (self.best <= other.best) else other
 
 class StoichMatrix(object):
     "Class for stoichiometry matrices"
@@ -1502,7 +1503,8 @@ class flux(object):
             self.backward = backward
             self.net      = forward - backward
             print("After getting forward - backward")
-            self.exchange = min(forward,backward)
+            # self.exchange = min(forward,backward)
+            self.exchange = forward.min(backward)
             print("After getting min(forward,backward)")
 
 
