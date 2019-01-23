@@ -1474,7 +1474,6 @@ class flux(object):
         print("net_exc_tup", net_exc_tup)
         print("net_coeff_tup", net_coeff_tup)
         print("========================================")
-        print("\n")
         if for_back_tup != None and net_exc_tup != None:
             print("for_back_tup != None and net_exc_tup != None")
             forward,backward = for_back_tup
@@ -1501,10 +1500,13 @@ class flux(object):
 
             self.forward  = forward
             self.backward = backward
-            self.net      = forward - backward        
+            self.net      = forward - backward
+            print("After getting forward - backward")
             self.exchange = min(forward,backward)
-        
-        elif net_exc_tup != None:
+            print("After getting min(forward,backward)")
+
+
+    elif net_exc_tup != None:
             print("net_exc_tup != None")
             net,exchange  = net_exc_tup
             net      = float(net)      if utils.is_float(net)      else net

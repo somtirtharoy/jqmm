@@ -335,6 +335,7 @@ class ReactionNetwork(object):
                 print("Changed flux bounds")
             except:
                 print('Wrong input!!!')
+                print("\n")
 
 
     def loadFluxBounds(self, fileName, convert2SBML=True, measured=False):
