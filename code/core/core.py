@@ -1503,8 +1503,10 @@ class flux(object):
             self.backward = backward
             self.net      = forward - backward
             print("After getting forward - backward")
-            # self.exchange = min(forward,backward)
-            self.exchange = forward.min(backward)
+            if utils.is_float(forward):
+                self.exchange = min(forward,backward)
+            else:
+                self.exchange = forward.min(backward)
             print("After getting min(forward,backward)")
 
 
