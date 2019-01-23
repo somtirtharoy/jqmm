@@ -318,8 +318,9 @@ class ReactionNetwork(object):
         elif isinstance(flux, tuple):
             print("This is a tuple")
             lb,ub = flux
-            fluxNew = core.flux(core.rangedNumber(lb,utils.old_div((lb+ub),2),ub),core.rangedNumber(0,0,0))
-            self.changeFluxBounds(reactionName, fluxNew)      
+            # fluxNew = core.flux(core.rangedNumber(lb,utils.old_div((lb+ub),2),ub),core.rangedNumber(0,0,0))
+            fluxNew = core.flux(( core.rangedNumber(lb,(lb+ub)/2,ub), core.rangedNumber(0,0,0) ))
+            self.changeFluxBounds(reactionName, fluxNew)
         else:      # shortened version
             print("This is a number")
             try:
@@ -327,7 +328,8 @@ class ReactionNetwork(object):
                 bounds = float(flux)
                 print("bounds", bounds)
                 print("Convert it to a flux object")
-                fluxNew = core.flux(core.rangedNumber(bounds,bounds,bounds),core.rangedNumber(0,0,0))
+                # fluxNew = core.flux(core.rangedNumber(bounds,bounds,bounds),core.rangedNumber(0,0,0))
+                fluxNew = core.flux(( core.rangedNumber(bounds,bounds,bounds), core.rangedNumber(0,0,0) ))
                 print("fluxNew", fluxNew)
                 self.changeFluxBounds(reactionName, fluxNew)
                 print("Changed flux bounds")
