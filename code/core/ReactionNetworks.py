@@ -307,35 +307,35 @@ class ReactionNetwork(object):
         changes both bounds to zero.
         Input can also be a flux class instance.
         """
-        print("Inside changeFluxBounds")
+        # print("Inside changeFluxBounds")
         if isinstance(flux, core.flux):        # full flux instantiation provided
-            print("This is a flux object")
+            # print("This is a flux object")
             reacDict = self.reactionList.getReactionDictionary()
             reaction = reacDict[reactionName]
             reaction.fluxBounds = flux 
             if measured:
                 reaction.measured = True
         elif isinstance(flux, tuple):
-            print("This is a tuple")
+            # print("This is a tuple")
             lb,ub = flux
             # fluxNew = core.flux(core.rangedNumber(lb,utils.old_div((lb+ub),2),ub),core.rangedNumber(0,0,0))
             fluxNew = core.flux(( core.rangedNumber(lb,(lb+ub)/2,ub), core.rangedNumber(0,0,0) ))
             self.changeFluxBounds(reactionName, fluxNew)
         else:      # shortened version
-            print("This is a number")
+            # print("This is a number")
             try:
-                print("flux", flux)
+                # print("flux", flux)
                 bounds = float(flux)
-                print("bounds", bounds)
-                print("Convert it to a flux object")
+                # print("bounds", bounds)
+                # print("Convert it to a flux object")
                 # fluxNew = core.flux(core.rangedNumber(bounds,bounds,bounds),core.rangedNumber(0,0,0))
                 fluxNew = core.flux(( core.rangedNumber(bounds,bounds,bounds), core.rangedNumber(0,0,0) ))
-                print("fluxNew", fluxNew)
+                # print("fluxNew", fluxNew)
                 self.changeFluxBounds(reactionName, fluxNew)
-                print("Changed flux bounds")
+                # print("Changed flux bounds")
             except:
-                print('Wrong input!!!')
-                print("\n")
+                # print('Wrong input!!!')
+                # print("\n")
 
 
     def loadFluxBounds(self, fileName, convert2SBML=True, measured=False):

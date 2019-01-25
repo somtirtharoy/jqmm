@@ -115,7 +115,7 @@ class FBAModel(FluxModel):
     # TODO: redo init by leveraging FluxModel init as much as possible:
     #        FluxModel.__init__(self,reactionNetwork,GAMSfileName,outputFuncs)
     def __init__(self,sbmlFileName):
-        print("Inside FBAModel init")
+        # print("Inside FBAModel init")
         "sbmlFileName can be the name of the sbml file or a tuple of the form (fileName,string)"
         # Obtain GAMS file information
         try: 
@@ -144,7 +144,7 @@ class FBAModel(FluxModel):
                           'Vmin':(GAMSclasses.GAMSParameterFromResult,['Vminout.txt','Vmin']), 
                         }
         self.outputFuncsFVA = outputFuncsFVA
-        print("init done")
+        # print("init done")
 
 
     # TODO Convert to getGAMSInputFilesFBA as soon as changeFluxBoundsFAST is gone
