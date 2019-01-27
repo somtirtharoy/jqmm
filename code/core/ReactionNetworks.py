@@ -334,7 +334,7 @@ class ReactionNetwork(object):
                 self.changeFluxBounds(reactionName, fluxNew)
                 # print("Changed flux bounds")
             except:
-                # print('Wrong input!!!')
+                print('Wrong input!!!')
                 # print("\n")
 
 
